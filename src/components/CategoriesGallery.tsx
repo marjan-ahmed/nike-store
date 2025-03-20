@@ -24,22 +24,27 @@ function CategoriesGallery() {
               }
             ].map((item, index) => (
               <CarouselItem key={index}>
-                <div className="w-full h-[400px] sm:h-[400px] md:h-[500px] lg:h-[580px] relative">
-                  <Image src={item.src} alt={item.alt} fill className="object-cover" />
-                  <div className="absolute bottom-12 right-10 flex gap-2">
-                    {item.link && (
-                      <Button className="px-6 py-5 rounded-full bg-white text-black hover:bg-gray-200">
-                        <Link href={item.link}>{item.label}</Link>
-                      </Button>
-                    )}
-                    {item.extraButtons?.map((btn, btnIndex) => (
-                      <Button key={btnIndex} className="px-6 py-5 rounded-full bg-white text-black hover:bg-gray-200">
-                        <Link href={btn.link}>{btn.label}</Link>
-                      </Button>
-                    ))}
-                  </div>
+                <div className="p-6">
+              <div className="w-full h-[400px] sm:h-[400px] md:h-[500px] lg:h-[580px] relative p-4 sm:p-6 md:p-8">
+                <Image src={item.src} alt={item.alt} fill className="object-cover " />
+                
+                {/* Button Container */}
+                <div className="absolute bottom-8 right-10 flex gap-4 p-2 sm:p-4">
+                  {item.link && (
+                    <Button className="px-6 py-3 rounded-full bg-white text-black hover:bg-gray-200 shadow-md">
+                      <Link href={item.link}>{item.label}</Link>
+                    </Button>
+                  )}
+                  {item.extraButtons?.map((btn, btnIndex) => (
+                    <Button key={btnIndex} className="px-6 py-3 rounded-full bg-white text-black hover:bg-gray-200 shadow-md">
+                      <Link href={btn.link}>{btn.label}</Link>
+                    </Button>
+                  ))}
                 </div>
-              </CarouselItem>
+                </div>
+              </div>
+            </CarouselItem>
+            
             ))}
           </CarouselContent>
         </Carousel>
@@ -86,10 +91,10 @@ function CategoriesGallery() {
   ].map((item, index) => (
     <div key={index} className="w-full h-[400px] sm:h-[500px] md:h-[748px] relative">
       <Image src={item.src} alt={`Image ${index + 1}`} fill className="object-cover" />
-      <div className="absolute left-12 bottom-16 text-white">
+      <div className="absolute left-6 bottom-6 sm:left-12 sm:bottom-12 text-white">
         <h2 className="text-[18px] font-medium">{item.description}</h2>
         <h1 className="text-[24px] font-bold">{item.product}</h1>
-        <button className="mt-4 px-6 py-2 bg-white text-black font-bold uppercase rounded-full hover:bg-gray-200 transition">
+        <button className="mt-4 px-4 sm:px-6 py-2 bg-white text-black font-bold uppercase rounded-full hover:bg-gray-200 transition">
           Shop
         </button>
       </div>

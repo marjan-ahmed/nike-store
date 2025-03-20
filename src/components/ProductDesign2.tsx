@@ -4,7 +4,8 @@ import Link from 'next/link';
 import React from 'react';
 
 async function ProductDesign2() {
-    const query = `*[_type == "product"]{
+    const query = `
+    *[_type == "product"]{
         name,
         "slug": slug.current,
         description,
@@ -19,16 +20,16 @@ async function ProductDesign2() {
     console.log(data);
 
     return (
-        <div className="w-full flex flex-wrap justify-center gap-4">
+        <div className="w-full flex flex-wrap justify-center gap-3 px-4">
             {data.map((product: any) => (
-                <Link key={product.slug} href={`/air-max-dn8-shoes/${product.slug}`} className="w-full sm:w-[462px] h-full sm:h-[619px] p-4 bg-gray-200 hover:shadow-lg transition-shadow">
-                    <div className="h-[445px] relative">
+                <Link key={product.slug} href={`/air-max-dn8-shoes/${product.slug}`} className="w-full sm:w-[462px] h-full sm:h-[619px]">
+                    <div className="h-full sm:h-[445px] mt-6 md:mt-mt-3 relative">
                         {product.images?.[0] && (
                             <Image 
                                 src={product.images[0]}
                                 alt={product.name}
-                                width={400}
-                                height={400}
+                                width={200}
+                                height={200}
                                 className="object-cover w-full h-full"
                             />
                         )}

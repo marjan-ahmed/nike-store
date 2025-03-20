@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 
 function Product({image, title}: {image: string, title: string}) {
   return (
-    <div className='w-full sm:w-[463px] h-[316px] mt-6 bg-red-300 relative'>
+    <div className='w-full sm:w-[463px] h-[316px] m-4 mt-6 bg-gray-300 relative'>
         <Image 
         src={image}
         alt={title} 
