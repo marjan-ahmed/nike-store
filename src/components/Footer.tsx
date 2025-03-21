@@ -4,7 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 
 export default function Footer() {
   return (
-    <footer className="mx-10 px-6 py-6 text-sm">
+    <footer className="mx-6 sm:mx-10 py-6 text-sm">
       {/* Mobile View */}
       <div className="md:hidden">
         <Accordion type="single" collapsible className="w-full">
