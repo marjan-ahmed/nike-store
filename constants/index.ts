@@ -83,36 +83,6 @@ export const NIKE_ITEMS = [
                 ]
             },
             {
-                title: "Jordan",
-                href: "/jordan",
-                items: [
-                    "All Jordan",
-                    "New Jordan",
-                    "Jordan Shoes",
-                    "Jordan Clothing",
-                    "Jordan Basketball",
-                    "Jordan Lifestyle",
-                ]
-            },
-            {
-                title: "Shoes",
-                href: "/shoes",
-                items: [
-                    "All Shoes",
-                    "Newest Sneakers",
-                    "Jordan",
-                    "Lifestyle",
-                    "Running",
-                    "Gym and Training",
-                    "Basketball",
-                    "Football",
-                    "Sandals and Slides",
-                    "Last Sizes Available",
-                    "Customise with Nike By You",
-                    "Top Picks Under $100",
-                ]
-            },
-            {
                 title: "Clothing",
                 href: "/clothing",
                 items: [
@@ -246,20 +216,7 @@ export const NIKE_ITEMS = [
                     "Football",
                     "Skatebording",
                 ]
-            },
-            {
-                title: "Shop By Brand",
-                href: "/shop-by-brand",
-                items: [
-                    "Nike Sportswear",
-                    "NikeLab",
-                    "Nike By You",
-                    "Jordan",
-                    "ACG",
-                    "NBA",
-                    "Nike SB",
-                ]
-            },
+            }
         ]
     },
     {
@@ -291,22 +248,6 @@ export const NIKE_ITEMS = [
                 ]
             },
             {
-                title: "Boys' Shoes",
-                href: "/boys-shoes",
-                items: [
-                    "All Shoes",
-                    "Older Boys (7 - 14 years)",
-                    "Younger Boys (4 - 7 years)",
-                    "Babies and Toddlers (0 - 4 years)",
-                    "Lifestyle",
-                    "Jordan",
-                    "Running",
-                    "Basketball",
-                    "Football",
-                    "Sandals and Slides",
-                ]
-            },
-            {
                 title: "Boys' Clothing",
                 href: "/boys-clothing",
                 items: [
@@ -334,18 +275,6 @@ export const NIKE_ITEMS = [
                 ]
             },
             {
-                title: "Girls' Clothing",
-                href: "/girls-clothing",
-                items: [
-                    "Top and T-Shirts",
-                    "Sports Bras",
-                    "Hoodies and Sweatshirts",
-                    "Pants and Leggings",
-                    "Shorts",
-                    "All Girls' Clothing",
-                ]
-            },
-            {
                 title: "Accesories and Equipment",
                 href: "/accesories-and-equipment",
                 items: [
@@ -355,17 +284,6 @@ export const NIKE_ITEMS = [
                     "Hats and Headwear",
                 ]
             },
-            {
-                title: "Shop By Sport",
-                href: "/shop-by-sport",
-                items: [
-                    "Football",
-                    "Running",
-                    "Basketball",
-                    "Gym and Training",
-                    "Tennis",
-                ]
-            }
         ]
     },
 ]

@@ -6,7 +6,7 @@ import { NIKE_ITEMS } from "../../constants";
 import MegaMenu from "./MegaMenu";
 import Link from "next/link";
 import { RiMenuFill, RiSearchLine } from "react-icons/ri";
-import { FaBars, FaRegHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import { IoBagOutline } from "react-icons/io5";
 import {
   Sheet,
@@ -19,6 +19,7 @@ import SearchTerm from "./SearchTerm";
 import { FiUser } from "react-icons/fi";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuTrigger } from "./ui/navigation-menu";
 import { NavigationMenuList } from "@radix-ui/react-navigation-menu";
+import AddToCartIndicator from "./AddToCartIndicator";
 
 
 function Header() {
@@ -68,7 +69,9 @@ function Header() {
             <Separator orientation="vertical" className="border-black" />
             <li>Join Us</li>
             <Separator orientation="vertical" className="border-black" />
+            <Link href={'/signin'}>
             <li>Sign In</li>
+            </Link>
           </ul>
         </nav>
       </div>
@@ -164,7 +167,7 @@ function Header() {
   {/* ❤️ Wishlist & 🛒 Cart Icons */}
   <FaRegHeart size={20} />
   <FiUser size={20} />
-  <IoBagOutline size={20} />
+  <AddToCartIndicator />
 
   {/* 📱 Hamburger Menu (Now Placed at the End) */}
   <div className="sm:hidden block">

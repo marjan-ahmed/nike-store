@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
+import {
+  ClerkProvider,
+} from '@clerk/nextjs'
+import { CartProvider } from "../../redux/CartContext";
+import Footer from "@/components/Footer";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,12 +35,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <ClerkProvider>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <CartProvider>
         <Header />
         {children}
+        <Footer />
+        </CartProvider>
       </body>
+      </ClerkProvider>
     </html>
   );
 }
