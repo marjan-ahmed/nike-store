@@ -19,7 +19,7 @@ function ProductListingHeader() {
         }
 
         fetchProducts();
-    })
+    }, []);
 
     let product: string = 'Air Max Dn8'
   return (
