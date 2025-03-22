@@ -5,9 +5,8 @@ import { Separator } from "./ui/separator";
 import { NIKE_ITEMS } from "../../constants";
 import MegaMenu from "./MegaMenu";
 import Link from "next/link";
-import { RiMenuFill, RiSearchLine } from "react-icons/ri";
+import { RiSearchLine } from "react-icons/ri";
 import { FaRegHeart } from "react-icons/fa";
-import { IoBagOutline } from "react-icons/io5";
 import {
   Sheet,
   SheetClose,
@@ -20,6 +19,7 @@ import { FiUser } from "react-icons/fi";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuTrigger } from "./ui/navigation-menu";
 import { NavigationMenuList } from "@radix-ui/react-navigation-menu";
 import AddToCartIndicator from "./AddToCartIndicator";
+import MobileMenu from "./MobileMenu";
 
 
 function Header() {
@@ -39,41 +39,49 @@ function Header() {
             />
           </div>
         </div>
-        <nav>
-          <ul className="flex text-[12px] font-semibold items-center space-x-3">
-            <li>Find a Store</li>
-            <Separator orientation="vertical" className="border-black" />
-            <li>
-            <NavigationMenu>
-  <NavigationMenuList>
-    <NavigationMenuItem className="transparent relative group">
-      {/* Wrap text inside a div */}
-      <NavigationMenuTrigger className="cursor-pointer bg-transparent text-[12px]">Help</NavigationMenuTrigger>
-      <NavigationMenuContent className="shadow-none">
-        <div className="flex w-52 flex-col rounded-xl p-4 text-[11px] opacity-70 justify-start gap-1">
-        <h1 className="text-lg font-semibold mb-2">Help</h1>
-          <NavigationMenuItem>Order Status</NavigationMenuItem>
-          <NavigationMenuItem>Dispatch and Delivery</NavigationMenuItem>
-          <NavigationMenuItem>Returns</NavigationMenuItem>
-          <NavigationMenuItem>Contact Us</NavigationMenuItem>
-          <NavigationMenuItem>Privacy Policy</NavigationMenuItem>
-          <NavigationMenuItem>Terms Of Sale</NavigationMenuItem>
-          <NavigationMenuItem>Terms Of Use</NavigationMenuItem>
-          <NavigationMenuItem>Send Us Feedback</NavigationMenuItem>
-        </div>
-      </NavigationMenuContent>
-    </NavigationMenuItem>
-  </NavigationMenuList>
-</NavigationMenu>
-            </li>
-            <Separator orientation="vertical" className="border-black" />
-            <li>Join Us</li>
-            <Separator orientation="vertical" className="border-black" />
-            <Link href={'/signin'}>
-            <li>Sign In</li>
-            </Link>
-          </ul>
-        </nav>
+        <nav className="text-[12px] font-semibold">
+      <ul className="flex items-center gap-x-3">
+        <li className="cursor-pointer">Find a Store</li>
+        <Separator orientation="vertical" className="h-4 bg-black" />
+
+        {/* Help Dropdown */}
+        <li>
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem className="relative group">
+                <NavigationMenuTrigger className="cursor-pointer bg-transparent text-[12px]">
+                  Help
+                </NavigationMenuTrigger>
+                <NavigationMenuContent className="shadow-none">
+                  <div className="flex w-52 flex-col rounded-xl p-4 text-[11px] opacity-70 justify-start gap-1">
+                    <h1 className="text-lg font-semibold mb-2">Help</h1>
+                    <NavigationMenuItem>Order Status</NavigationMenuItem>
+                    <NavigationMenuItem>Dispatch and Delivery</NavigationMenuItem>
+                    <NavigationMenuItem>Returns</NavigationMenuItem>
+                    <NavigationMenuItem>Contact Us</NavigationMenuItem>
+                    <NavigationMenuItem>Privacy Policy</NavigationMenuItem>
+                    <NavigationMenuItem>Terms Of Sale</NavigationMenuItem>
+                    <NavigationMenuItem>Terms Of Use</NavigationMenuItem>
+                    <NavigationMenuItem>Send Us Feedback</NavigationMenuItem>
+                  </div>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </li>
+
+        <Separator orientation="vertical" className="h-4 bg-black" />
+        <li className="cursor-pointer">Join Us</li>
+        <Separator orientation="vertical" className="h-4 bg-black" />
+        
+        {/* Sign In Link */}
+        <li>
+          <Link href="/signin" className="cursor-pointer">
+            Sign In
+          </Link>
+        </li>
+      </ul>
+    </nav>
       </div>
 
       {/* 🔹 Main Header */}
@@ -84,7 +92,7 @@ function Header() {
 
 
         {/* 🔹 Full Menu (Visible on Large Screens) */}
-        <div className="hidden sm:flex gap-5">
+        <div className="hidden md:flex gap-5">
           {NIKE_ITEMS.map((item: any) => (
             <div key={item.category} className="group">
               <Link
@@ -101,99 +109,81 @@ function Header() {
         {/* 🔹 Search & Icons */}
         <div className="flex gap-3.5 items-center">
   {/* 🔍 Search Box */}
-  <div className="relative flex items-center">
-    <Sheet>
-      <SheetTrigger asChild>
-        <div className="relative flex items-center cursor-pointer">
-          {/* Search Icon */}
-          <div className="absolute left-0.5 flex h-[37px] w-[40px] items-center justify-center rounded-full bg-[#F5F5F5] hover:bg-[#cbcbcb]">
-            <RiSearchLine size={20} />
-          </div>
-          {/* Search Input (Hidden on Small Screens) */}
-          <input
-            type="text"
-            placeholder="Search"
-            className="h-[38px] w-[168px] rounded-full bg-[#F5F5F5] px-[2.8em] font-semibold text-gray-600 hover:bg-[#dedede] hidden xl:block cursor-pointer"
-            readOnly
-          />
-        </div>
-      </SheetTrigger>
-
-      {/* 🔹 Expanded Search Modal */}
-      <SheetContent side="top" className="h-[20em]">
-        <SheetHeader>
-          <div className="flex justify-between mt-[-40px] mx-4">
-            <Link href={"https://nike.com/"}>
-              <SiNike size={88} />
-            </Link>
-            <div className="mt-7 relative mr-20">
-              <div className="rounded-full left-0.5 w-[40px] flex justify-center items-center h-[38px] hover:bg-[#cbcbcb] bg-[#F5F5F5] absolute">
-                <RiSearchLine size={20} />
-              </div>
-              <input
-                type="text"
-                placeholder="Search"
-                className="font-semibold text-gray-600 px-[2.8em] hidden xl:block rounded-full bg-[#F5F5F5] hover:bg-[#dedede] w-[90%] h-[38px] border border-black"
-              />
+  <div className="relative flex items-center w-full max-w-md md:max-w-lg lg:max-w-xl">
+      <Sheet>
+        <SheetTrigger asChild>
+          <div className="relative flex items-center w-full cursor-pointer">
+            {/* 🔹 Search Icon */}
+            <div className="absolute left-2 flex h-[37px] w-[40px] items-center justify-center rounded-full bg-gray-200 hover:bg-gray-300">
+              <RiSearchLine size={20} />
             </div>
-            <SheetClose asChild>
-              <button className="font-semibold">Cancel</button>
-            </SheetClose>
+
+            {/* 🔹 Search Input (Visible on md+ screens) */}
+            <input
+              type="text"
+              placeholder="Search"
+              className="h-[38px] w-full pl-12 pr-4 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 focus:bg-white focus:outline-none hidden sm:block cursor-pointer"
+              readOnly
+            />
           </div>
-        </SheetHeader>
+        </SheetTrigger>
 
-        {/* 🔹 Popular Search Terms */}
-        <div className="w-full sm:w-[80%] mx-auto mt-6">
-          <h1 className="text-sm text-gray-500 font-semibold">
-            Popular Search Terms
-          </h1>
-          <div className="mt-4">
-            <div className="flex flex-wrap gap-4">
-              <SearchTerm term="air force 1" />
-              <SearchTerm term="jordan" />
-              <SearchTerm term="air max" />
-              <SearchTerm term="soccer cleats" />
-              <SearchTerm term="jordan 4" />
-              <SearchTerm term="dunks" />
-              <SearchTerm term="basketball shoes" />
-              <SearchTerm term="kobe" />
-            </div>
-          </div>
-        </div>
-      </SheetContent>
-    </Sheet>
-  </div>
-
-  {/* ❤️ Wishlist & 🛒 Cart Icons */}
-  <FaRegHeart size={20} />
-  <FiUser size={20} />
-  <AddToCartIndicator />
-
-  {/* 📱 Hamburger Menu (Now Placed at the End) */}
-  <div className="sm:hidden block">
-    <Sheet>
-      <SheetTrigger asChild>
-        <div className="cursor-pointer p-">
-          <RiMenuFill size={24} />
-        </div>
-      </SheetTrigger>
-
-      <SheetContent side="left">
-        <div className="flex flex-col gap-5 p-5">
-          {NIKE_ITEMS.map((item: any) => (
-            <div key={item.category} className="group">
-              <Link
-                href={item.href}
-                className="block text-[16px] font-semibold py-1 hover:border-b-[3px] border-black"
-              >
-                {item.category}
+        {/* 🔹 Expanded Search Modal */}
+        <SheetContent side="top" className="md:h-[300px] h-auto p-3">
+          <SheetHeader>
+            <div className="flex h-1/2 flex-col sm:flex-row px-4 items-center justify-between">
+              {/* Nike Logo */}
+              <Link href="https://nike.com/">
+                <SiNike size={48} className="text-black" />
               </Link>
-              {item.product && <MegaMenu product={item.product} />}
+
+              {/* Search Input (Always visible in modal) */}
+              <div className="relative w-full max-w-sm sm:max-w-4xl mt-4 sm:mt-0">
+                <div className="absolute top-2.5 left-3 flex items-center">
+                  <RiSearchLine size={20} />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="w-full h-10 pl-10 pr-4 border border-gray-300 rounded-full bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400"
+                />
+              </div>
+
+              {/* Close Button */}
+              <SheetClose asChild>
+                <button className="text-gray-700 hover:text-black font-semibold mt-4 sm:mt-0">
+                  Cancel
+                </button>
+              </SheetClose>
             </div>
-          ))}
-        </div>
-      </SheetContent>
-    </Sheet>
+          </SheetHeader>
+
+          {/* 🔹 Popular Search Terms */}
+          <div className="mt-6 flex flex-col items-center">
+  <h1 className="text-sm text-gray-500 font-semibold mt-4 mb-3">
+    Popular Search Terms
+  </h1>
+  <div className="flex flex-wrap justify-center gap-3">
+    <SearchTerm term="air force 1" />
+    <SearchTerm term="jordan" />
+    <SearchTerm term="air max" />
+    <SearchTerm term="soccer cleats" />
+    <SearchTerm term="jordan 4" />
+    <SearchTerm term="dunks" />
+    <SearchTerm term="basketball shoes" />
+    <SearchTerm term="kobe" />
+  </div>
+</div>
+        </SheetContent>
+      </Sheet>
+    </div>
+
+  <FaRegHeart className="hidden md:block" size={20} />
+  <FiUser />
+  <AddToCartIndicator />
+  {/* 📱 Hamburger Menu (Now Placed at the End) */}
+  <div className="md:hidden block">
+  <MobileMenu />
   </div>
 </div>
 </div>
