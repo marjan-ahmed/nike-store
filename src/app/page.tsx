@@ -11,7 +11,7 @@ export default function Home() {
       {/* Left Section */}
       <div className="bg-[#262123] w-full sm:w-1/2 min-h-[37vh] relative">
         <Image
-          src="/hero-1.JPG"
+          src="/hero-1.jpg"
           alt="Hero Image"
           fill
           className="object-cover"
@@ -21,7 +21,7 @@ export default function Home() {
       {/* Right Section */}
       <div className="bg-[#262123] w-full sm:w-1/2 min-h-[37vh] relative">
         <Image
-          src="/hero-2.JPG"
+          src="/hero-2.jpg"
           alt="Hero Image 2"
           fill
           className="object-cover"
