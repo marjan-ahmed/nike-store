@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { SiJordan, SiNike } from "react-icons/si";
 import { Separator } from "./ui/separator";
-import { NIKE_ITEMS } from "../../constants";
+import { NIKE_ITEMS } from "../../menu_items";
 import MegaMenu from "./MegaMenu";
 import Link from "next/link";
 import { RiSearchLine } from "react-icons/ri";
