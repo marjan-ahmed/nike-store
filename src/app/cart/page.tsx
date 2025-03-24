@@ -9,6 +9,7 @@ import { Separator } from "@/components/ui/separator";
 import { useDispatch, useSelector } from "react-redux";
 import { CartItem, remove, updateQuantity } from "@/app/redux/cartSlice";
 import { RootState } from "../redux/store";
+import { CheckoutButton } from "@/components/CheckoutButton";
 
 export default function Cart() {  
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ export default function Cart() {
 
   // Calculate subtotal
   const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum: number, item: CartItem) => sum + item.price * item.quantity,
     0
   );
 
@@ -147,14 +148,11 @@ export default function Cart() {
             </div>
             
             <div className="mt-8 space-y-4">
-              <Button className="w-full py-6 rounded-full" variant="default">
-                <Link href={'/checkout'}>Guest Checkout</Link>
-              </Button>
-              
+              <CheckoutButton cartItems={cartItems} />
+          
               <Button className="w-full py-6 rounded-full" variant="default">
                 <Link href={'/signin'}>Member Checkout</Link>
-              </Button>
-              
+              </Button>              
             </div>
           </div>
         </div>
