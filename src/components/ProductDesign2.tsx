@@ -3,6 +3,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+export interface Product {
+    name: string;
+    slug: string;
+    description: string;
+    tag: string;
+    price: number;
+    sizes: string[];
+    category: string;
+    images: string[];
+}
+
 async function ProductDesign2() {
     const query = `
     *[_type == "product"]{
@@ -21,7 +32,7 @@ async function ProductDesign2() {
 
     return (
         <div className="w-full flex flex-wrap justify-center gap-3 px-4">
-            {data.map((product: any) => (
+            {data.map((product: Product) => (
                 <Link key={product.slug} href={`/air-max-dn8-shoes/${product.slug}`} className="w-full sm:w-[462px] h-full sm:h-[619px]">
                     <div className="h-full sm:h-[445px] mt-6 md:mt-mt-3 relative">
                         {product.images?.[0] && (

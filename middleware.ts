@@ -1,12 +1,19 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { getToken } from "next-auth/jwt";
 
-export default clerkMiddleware();
+export async function middleware(req: NextRequest) {
+  const token = await getToken({ req });
 
+  // If user is NOT authenticated and trying to access the cart page
+  if (!token && req.nextUrl.pathname === "/cart") {
+    return NextResponse.redirect(new URL("/auth", req.url)); // Redirect to auth page
+  }
+
+  return NextResponse.next(); // Continue to the requested page
+}
+
+// Apply middleware only on the /cart page
 export const config = {
-  matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
-    '/(api|trpc)(.*)',
-  ],
+  matcher: "/cart",
 };

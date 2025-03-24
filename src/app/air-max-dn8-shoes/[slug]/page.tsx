@@ -2,10 +2,10 @@ import { client } from "@/sanity/lib/client";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-
 import InteractiveProduct from "@/components/InteractiveProduct";
 
 interface Product {
+  id: string;
   name: string;
   slug: string;
   description: string;
@@ -16,6 +16,8 @@ interface Product {
   highlyRated: boolean;
   materialMade: string;
   images: string[];
+  quantity: number;
+  selectedSize: string[];
 }
 
 interface ProductDetailProps {

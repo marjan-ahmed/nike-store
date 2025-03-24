@@ -1,21 +1,22 @@
-'use client'
+"use client";
+
+import Link from "next/link";
 import { IoBagOutline } from "react-icons/io5";
-import { useCart } from "../../redux/CartContext";
+import { RootState } from "@/app/redux/store";
+import { useSelector } from "react-redux";
 
 const AddToCartIndicator = () => {
-  const { cart } = useCart();
+  const cartItems = useSelector((state: RootState) => state.cart);
 
   return (
-    <div className="relative cursor-pointer">
-      <IoBagOutline size={24} />
-      
-      {/* Show badge if cart is not empty */}
-      {cart.length > 0 && (
-        <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-          {cart.length}
+    <Link href="/cart" className="relative cursor-pointer flex items-center">
+      <IoBagOutline size={20} className="text-black" />
+      {cartItems.length > 0 && (
+        <span className="absolute top-1.5 right-2 text-black text-[10px] font-medium">
+          {cartItems.length}
         </span>
       )}
-    </div>
+    </Link>
   );
 };
 

@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useUser, SignInButton } from "@clerk/nextjs"; // Import Clerk authentication hooks
 import { Button } from "@/components/ui/button";
-import { Heart, Ruler } from "lucide-react";
 import ProductInfoTabs from "./ProductInfoTabs";
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import SizeGuidePopover from "./SizeGuide";
 import { FaRegHeart } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { add } from "../app/redux/cartSlice";
+import Swal from "sweetalert2";
 
 interface Product {
   name: string;
@@ -15,6 +15,11 @@ interface Product {
   sizes: string[];
   category: string;
   materialMade: string;
+  id: string;
+  slug: string;
+  images: string[];
+  quantity: number;
+  selectedSize: string[]
 }
 
 interface ProductDetailProps {
@@ -22,17 +27,28 @@ interface ProductDetailProps {
 }
 
 const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
-  const { isSignedIn } = useUser(); // Check if user is logged in
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
-  const handleAddToCart = () => {
-    if (!isSignedIn) {
-      window.location.href = "/signin"; // Redirect to sign-in page if not logged in
+  const handleAdd = (product: Product) => {
+    if (!selectedSize) {
+      Swal.fire({
+        title: "Please select a size!",
+        text: "You need to choose a size before adding to the cart.",
+        icon: "warning",
+      });
       return;
     }
 
-    // ✅ Add product to cart logic here (implement cart functionality)
-    console.log(`Added ${product.name} to cart!`);
+    dispatch(add({ ...product, selectedSize, quantity: 1 }));
+
+    Swal.fire({
+      title: "Product Added to Cart!",
+      text: `${product.name} has been added successfully.`,
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
 
   return (
@@ -71,25 +87,34 @@ const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
         {/* Action Buttons */}
         <div className="space-y-3">
           <Button
-            onClick={handleAddToCart}
+            onClick={() => handleAdd(product)}
             className="w-full py-6 text-base rounded-full bg-black hover:bg-black/90"
           >
             Add to Bag
           </Button>
           <div className="mb-3 flex gap-10 items-center">
-          <Button variant="outline" className="w-full py-6 text-base rounded-full border-gray-300">
-            Favourite <FaRegHeart className="w-5 h-5 mr-2" /> 
-          </Button>
+            <Button variant="outline" className="w-full py-6 text-base rounded-full border-gray-300">
+              Favourite <FaRegHeart className="w-5 h-5 mr-2" />
+            </Button>
           </div>
         </div>
+
         <div className="w-[270px] mb-20 text-center mx-auto">
-          <span className="text-[16px] font-semibold text-[#707072]">This product is excluded from site promotions and discounts.</span>
-          </div>
-          <p className="mt-4">More Air, less bulk. The Dn8 takes our Dynamic Air system and condenses it into a sleek, low-profile package. Powered by eight pressurised Air tubes, it gives you a responsive sensation with every step. Enter an unreal experience of movement.</p>
+          <span className="text-[16px] font-semibold text-[#707072]">
+            This product is excluded from site promotions and discounts.
+          </span>
+        </div>
+
+        <p className="mt-4">
+          More Air, less bulk. The Dn8 takes our Dynamic Air system and condenses it into a sleek, low-profile package.
+          Powered by eight pressurised Air tubes, it gives you a responsive sensation with every step. Enter an unreal
+          experience of movement.
+        </p>
+
         <div className="mt-14">
-      <ProductInfoTabs />
+          <ProductInfoTabs />
+        </div>
       </div>
-    </div>
     </div>
   );
 };
