@@ -38,7 +38,7 @@ export default function Home() {
         </p>
         <Link
           href="/air-max-dn8-shoes"
-          className="mt-6 px-4 py-1.5 text-sm rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition"
+          className="mt-6 px-4 py-2 text-sm rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition"
         >
           Shop DN8
         </Link>

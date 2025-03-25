@@ -8,6 +8,8 @@ import { FaRegHeart } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { add } from "../app/redux/cartSlice";
 import Swal from "sweetalert2";
+import { useClerk, useUser } from "@clerk/clerk-react";
+import { useRouter } from "next/navigation";
 
 interface Product {
   name: string;
@@ -29,6 +31,9 @@ interface ProductDetailProps {
 const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const dispatch = useDispatch();
+  const { isSignedIn } = useUser(); // Get user authentication status
+  const { redirectToSignIn } = useClerk(); // Clerk sign-in redirection
+  const router = useRouter();
 
   const handleAdd = (product: Product) => {
     if (!selectedSize) {
@@ -40,6 +45,13 @@ const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
       return;
     }
 
+    // If user is not authenticated, redirect to Clerk sign-in
+    if (!isSignedIn) {
+      redirectToSignIn({ redirectUrl: `/air-max-dn8-shoes/${product.slug}` }); // Redirect user to sign-in page and return to product
+      return;
+    }
+
+    // If authenticated, add product to cart
     dispatch(add({ ...product, selectedSize, quantity: 1 }));
 
     Swal.fire({
