@@ -56,13 +56,13 @@ const ProductDetail = async ({ params }: ProductDetailProps) => {
             
             <div className="hidden md:flex flex-col gap-2">
               {product.images.map((image, index) => (
-                <div key={index} className="border rounded-md cursor-pointer">
+                <div key={index} className="border relative z-[5] rounded-md cursor-pointer">
                   <Image
                     src={image}
                     alt={`Thumbnail ${index}`}
                     width={80}
                     height={80}
-                    className="object-cover w-[80px] h-[80px] rounded-md"
+                    className="z-[5]  w-[80px] h-[80px] rounded-md"
                   />
                 </div>
               ))}
@@ -72,13 +72,13 @@ const ProductDetail = async ({ params }: ProductDetailProps) => {
               <Carousel className="w-full max-w-[530px] px-2">
                 <CarouselContent>
                   {product.images.map((image, index) => (
-                    <CarouselItem key={index} className="flex justify-center items-center">
+                    <CarouselItem key={index} className="flex relative z-[5] justify-center items-center">
                       <Image
                         src={image}
                         alt={`Product image ${index}`}
                         width={530}
                         height={660}
-                        className="object-cover w-full h-full rounded-lg"
+                        className="z-[5] w-full h-full rounded-lg"
                         priority
                       />
                     </CarouselItem>
