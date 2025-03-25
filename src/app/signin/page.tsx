@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { SignIn, useUser } from "@clerk/nextjs";
 
-const SignInRedirect = () => {
+const SignInComponent = () => {
   const { user, isSignedIn } = useUser();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -12,7 +12,6 @@ const SignInRedirect = () => {
 
   useEffect(() => {
     if (isSignedIn) {
-      // Get the return_url or fallback to home
       const returnUrl = searchParams.get("return_url") || "/";
       router.replace(returnUrl);
     }
@@ -31,6 +30,14 @@ const SignInRedirect = () => {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <SignIn />
     </div>
+  );
+};
+
+const SignInRedirect = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SignInComponent />
+    </Suspense>
   );
 };
 
