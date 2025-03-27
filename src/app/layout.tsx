@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import ReduxProvider from "@/components/reduxProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import Head from "next/head";
+import { Toaster } from "sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,20 +32,19 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang="en">
-      <Head>
-      <link rel="icon" href="/nike-logo.jpg" />
-      </Head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ReduxProvider>
-        <Header />
-        {children}
-        <Footer />
-        </ReduxProvider>
-      </body>
-    </html>
+      <html lang="en">
+        <Head>
+          <link rel="icon" href="/nike-logo.jpg" />
+        </Head>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+          <ReduxProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ReduxProvider>
+          <Toaster /> {/* Add Toaster here */}
+        </body>
+      </html>
     </ClerkProvider>
   );
 }

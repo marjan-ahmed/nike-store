@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import InteractiveProduct from "@/components/InteractiveProduct";
+import { supabaseClient } from "@/app/lib/supabaseClient";
+import ReviewDialog from "@/components/ReviewDialog";
 
 interface Product {
   id: string;
@@ -43,6 +45,14 @@ const fetchProduct = async (slug: string): Promise<Product | null> => {
 
 const ProductDetail = async ({ params }: ProductDetailProps) => {
   const product = await fetchProduct(params.slug);
+  const supabase = supabaseClient;
+
+  const { data: reviews, error } = await supabase
+    .from("reviews")
+    .select()
+    .eq("product_slug", params.slug);
+
+  if (error) return <p>Error loading reviews: {error.message}</p>;
 
   if (!product) return notFound();
 

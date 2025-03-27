@@ -9,7 +9,6 @@ import { useDispatch } from "react-redux";
 import { add } from "../app/redux/cartSlice";
 import Swal from "sweetalert2";
 import { useClerk, useUser } from "@clerk/clerk-react";
-import { useRouter } from "next/navigation";
 
 interface Product {
   name: string;
@@ -21,7 +20,7 @@ interface Product {
   slug: string;
   images: string[];
   quantity: number;
-  selectedSize: string[]
+  selectedSize: string[];
 }
 
 interface ProductDetailProps {
@@ -33,7 +32,6 @@ const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
   const dispatch = useDispatch();
   const { isSignedIn } = useUser(); // Get user authentication status
   const { redirectToSignIn } = useClerk(); // Clerk sign-in redirection
-  const router = useRouter();
 
   const handleAdd = (product: Product) => {
     if (!selectedSize) {
@@ -47,7 +45,7 @@ const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
 
     // If user is not authenticated, redirect to Clerk sign-in
     if (!isSignedIn) {
-      redirectToSignIn({ redirectUrl: `/air-max-dn8-shoes/${product.slug}` }); // Redirect user to sign-in page and return to product
+      redirectToSignIn({ redirectUrl: `/air-max-dn8-shoes/${product.slug}` });
       return;
     }
 
@@ -124,7 +122,7 @@ const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
         </p>
 
         <div className="mt-14">
-          <ProductInfoTabs />
+          <ProductInfoTabs slug={product.slug} />
         </div>
       </div>
     </div>
