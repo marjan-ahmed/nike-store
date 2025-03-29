@@ -35,24 +35,24 @@ const ProductInfoTabs = ({slug}: {slug: string}) => {
 
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="delivery">
-          <AccordionTrigger className="text-[17px]">Free Delivery and Returns</AccordionTrigger>
-          <AccordionContent>
+          <AccordionTrigger className="text-[20px]">Free Delivery and Returns</AccordionTrigger>
+          <AccordionContent className="text-[16px]">
             Get free delivery and returns on this product. Check our return policy for more details.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="how-made">
-          <AccordionTrigger className="text-[17px]">How This Was Made</AccordionTrigger>
-          <AccordionContent>
+          <AccordionTrigger className="text-[20px]">How This Was Made</AccordionTrigger>
+          <AccordionContent className="text-[16px]">
             This product is made using sustainable materials with eco-friendly processes.
           </AccordionContent>
         </AccordionItem>
 
         <AccordionItem value="reviews">
-          <AccordionTrigger className="text-[17px]">
+          <AccordionTrigger className="text-[20px]">
             Reviews ({totalReviews})
           </AccordionTrigger>
-          <AccordionContent>
+          <AccordionContent className="text-[16px]">
             <ReviewDialog productSlug={slug} /> 
             <ReviewsList productSlug={slug} />
           </AccordionContent>

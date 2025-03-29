@@ -22,6 +22,13 @@ const productSchema: ProductSchema = {
     type: "document",
     fields: [
         {
+            name: "images",
+            title: "Product Images",
+            type: "array",
+            of: [{ type: "image" }],
+            description: "Upload product images. Not required.",
+        },
+        {
             name: "name",
             title: "Product Name",
             type: "string",
@@ -79,13 +86,6 @@ const productSchema: ProductSchema = {
             title: "Material Made",
             type: "string",
             description: "Specify the materials used (e.g., leather, cotton, polyester).",
-        },
-        {
-            name: "images",
-            title: "Product Images",
-            type: "array",
-            of: [{ type: "image" }],
-            description: "Upload product images. Not required.",
         },
     ],
 };

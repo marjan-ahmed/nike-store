@@ -20,6 +20,7 @@ interface Product {
   slug: string;
   images: string[];
   quantity: number;
+  description: string;
   selectedSize: string[];
 }
 
@@ -65,7 +66,7 @@ const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
     <div className="md:col-span-5">
       <div className="space-y-6 px-2">
         <div>
-          <p className="text-red-600 text-sm">{product.materialMade}</p>
+          <p className="text-red-600 text-sm">{product.materialMade || 'NaN'}</p>
           <h1 className="text-2xl font-bold">{product.name}</h1>
           <p className="text-gray-600">{product.category}</p>
         </div>
@@ -116,10 +117,11 @@ const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
         </div>
 
         <p className="mt-4">
-          More Air, less bulk. The Dn8 takes our Dynamic Air system and condenses it into a sleek, low-profile package.
-          Powered by eight pressurised Air tubes, it gives you a responsive sensation with every step. Enter an unreal
-          experience of movement.
+          {product.description || 'By Default Description: More Air, less bulk. The Dn8 takes our Dynamic Air system and condenses it into a sleek, low-profile package.Powered by eight pressurised Air tubes, it gives you a responsive sensation with every step. Enter an unrealexperience of movement.'}
         </p>
+        <ul className="ml-6 list-disc text-[16px]">
+          <li>Country/Region of Origin: Vietnam</li>
+        </ul>
 
         <div className="mt-14">
           <ProductInfoTabs slug={product.slug} />
