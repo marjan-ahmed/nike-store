@@ -16,10 +16,9 @@ export interface Product {
 
 async function ProductDesign2() {
     const query = `
-    *[_type == "product"]{
+    *[_type == "product"] | order(slug.current asc) {
         name,
         "slug": slug.current,
-        description,
         tag,
         price,
         sizes,
