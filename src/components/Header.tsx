@@ -6,14 +6,13 @@ import { NIKE_ITEMS } from "../../menu_items";
 import MegaMenu from "./MegaMenu";
 import Link from "next/link";
 import { FaRegHeart, FaSearch, FaRegUser } from "react-icons/fa";
-import { HiOutlineShoppingBag } from "react-icons/hi";
+import WishListIndicator from "./WishListIndicator";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuTrigger } from "./ui/navigation-menu";
 import { NavigationMenuList } from "@radix-ui/react-navigation-menu";
 import AddToCartIndicator from "./AddToCartIndicator";
 import MobileMenu from "./MobileMenu";
 import SearchBar from "./SearchBar";
 import AuthButtons from "./AuthButtons";
-import { FiUser } from "react-icons/fi";
 import UserAccountMenu from "./UserAccountMenu";
 
 function Header() {
@@ -99,7 +98,8 @@ function Header() {
           {/* Desktop: Search Bar & Icons */}
           <div className="relative items-center hidden md:flex w-full gap-4 max-w-md md:max-w-lg lg:max-w-xl">
             <SearchBar />
-            <FaRegHeart className="hidden md:block" size={20} />
+            {/* <FaRegHeart className="hidden md:block" size={20} /> */}
+            <WishListIndicator />
             <AddToCartIndicator />
           </div>
         </div>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import ProductInfoTabs from "./ProductInfoTabs";
 import SizeGuidePopover from "./SizeGuide";
-import { FaRegHeart } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa"; // You can use FaHeart for filled heart icon
 import { useDispatch } from "react-redux";
 import { add } from "../app/redux/cartSlice";
 import Swal from "sweetalert2";
@@ -30,6 +30,7 @@ interface ProductDetailProps {
 
 const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [isFavorited, setIsFavorited] = useState<boolean>(false); // State for favorite button
   const dispatch = useDispatch();
   const { isSignedIn } = useUser(); // Get user authentication status
   const { redirectToSignIn } = useClerk(); // Clerk sign-in redirection
@@ -62,11 +63,27 @@ const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
     });
   };
 
+  const toggleFavorite = () => {
+    // Toggle the favorite state
+    setIsFavorited((prev) => !prev);
+
+    // Optionally, store favorite status in localStorage or make an API call to save in the database
+    localStorage.setItem(`favorite_${product.id}`, JSON.stringify(!isFavorited));
+
+    Swal.fire({
+      title: isFavorited ? "Removed from Favorites" : "Added to Favorites",
+      text: `You have ${isFavorited ? "removed" : "added"} this product from your favorites.`,
+      icon: "success",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
   return (
     <div className="md:col-span-5">
       <div className="space-y-6 px-2">
         <div>
-          <p className="text-red-600 text-sm">{product.materialMade || 'NaN'}</p>
+          <p className="text-red-600 text-sm">{product.materialMade || "NaN"}</p>
           <h1 className="text-2xl font-bold">{product.name}</h1>
           <p className="text-gray-600">{product.category}</p>
         </div>
@@ -104,8 +121,17 @@ const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
             Add to Bag
           </Button>
           <div className="mb-3 flex gap-10 items-center">
-            <Button variant="outline" className="w-full py-6 text-base rounded-full border-gray-300">
-              Favourite <FaRegHeart className="w-5 h-5 mr-2" />
+            <Button
+              variant="outline"
+              className="w-full py-6 text-base rounded-full border-gray-300"
+              onClick={toggleFavorite} // Attach toggleFavorite to the button
+            >
+              Favourite
+              {isFavorited ? (
+                <FaHeart className="w-5 h-5 mr-2 text-red-500" /> // Filled heart when favorited
+              ) : (
+                <FaRegHeart className="w-5 h-5 mr-2" /> // Empty heart when not favorited
+              )}
             </Button>
           </div>
         </div>
@@ -117,7 +143,8 @@ const ProductDetailRight: React.FC<ProductDetailProps> = ({ product }) => {
         </div>
 
         <p className="mt-4">
-          {product.description || 'By Default Description: More Air, less bulk. The Dn8 takes our Dynamic Air system and condenses it into a sleek, low-profile package.Powered by eight pressurised Air tubes, it gives you a responsive sensation with every step. Enter an unrealexperience of movement.'}
+          {product.description ||
+            "By Default Description: More Air, less bulk. The Dn8 takes our Dynamic Air system and condenses it into a sleek, low-profile package. Powered by eight pressurized Air tubes, it gives you a responsive sensation with every step. Enter an unreal experience of movement."}
         </p>
         <ul className="ml-6 list-disc text-[16px]">
           <li>Country/Region of Origin: Vietnam</li>

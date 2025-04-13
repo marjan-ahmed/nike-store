@@ -1,6 +1,6 @@
 import CategoriesGallery from "@/components/CategoriesGallery";
 import Product from "@/components/ProductDesign1";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Carousel, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -90,9 +90,6 @@ export default function Home() {
     </div>
   </div>
 </Carousel>
-
-
-
 
     </div>
     </div>
