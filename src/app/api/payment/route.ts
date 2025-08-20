@@ -86,6 +86,7 @@ export async function POST(req: NextRequest) {
       // Stripe requires the literal {CHECKOUT_SESSION_ID}, not a template var
       success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/cart`,
+
     });
 
     return NextResponse.json({
