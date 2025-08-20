@@ -14,7 +14,7 @@ function getAbsoluteImageUrl(imageUrl: string): string {
   }
 
   // If it's a relative URL, make it absolute
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+  const baseUrl = "https://nike-clone-version.vercel.app/" || "http://localhost:3000"
 
   // Remove leading slash if present in both baseUrl and imageUrl
   if (baseUrl.endsWith("/") && imageUrl.startsWith("/")) {
