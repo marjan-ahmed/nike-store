@@ -122,7 +122,7 @@ export default function Cart() {
                 >
                   Clear Cart
                 </Button>
-                <Link href="/products">
+                <Link href="/air-max-dn8-shoes">
                   <Button variant="outline">Continue Shopping</Button>
                 </Link>
               </div>

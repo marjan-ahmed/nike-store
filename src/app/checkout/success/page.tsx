@@ -34,7 +34,7 @@ export default async function CheckoutSuccessPage({
         </p>
         <p className="text-sm text-muted-foreground">Order reference: {sessionId}</p>
         <div className="pt-4">
-          <Link href="/">
+          <Link href="/air-max-dn8-shoes">
             <Button>Continue Shopping</Button>
           </Link>
         </div>
